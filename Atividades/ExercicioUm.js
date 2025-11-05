@@ -4,6 +4,7 @@
 //Entrada: 10
 //Saída: 1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz
 
+/*
 let numero = 19;
 let resultado = "";
 for (let i = 0; i <= numero; i++) {
@@ -19,5 +20,29 @@ for (let i = 0; i <= numero; i++) {
     }
 }
 console.log(resultado);
+*/
 
+// function saudacao(){
+//     console.log("Olá, seja bem-vindo(a)!");
+// }
+// saudacao();
 
+// function novaSaudacao(nome){
+//     console.log("Olá, " + nome + "! Seja bem-vindo(a)!");
+// }
+// novaSaudacao("Jéssica");
+
+// function numeroDobrado(numero){
+//     return numero * 2;
+// }
+// console.log(numeroDobrado(5));
+
+// function mediaAritmetica(num1, num2, num3){
+//     return (num1 + num2 + num3) / 3;
+// }
+// console.log(mediaAritmetica(4, 6, 8));
+
+// function numeroMultiplicado(num){
+//     return num * num;
+// }
+// console.log(numeroMultiplicado(7));
