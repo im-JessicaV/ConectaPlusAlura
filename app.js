@@ -1,22 +1,26 @@
+let listaNumerosSorteados = [];
+let limiteDeTentativas = 10;
 let numeroSecreto = gerarNumeroAleatorio();
 let tentativas = 1;
 
-function exibirTextoNaTela(tag, texto){
+
+function exibirTextoNaTela(tag, texto) {
     let campo = document.querySelector(tag);
     campo.innerHTML = texto;
+    responsiveVoice.speak(texto, "Brazilian Portuguese Female", { rate: 1.2 });
 }
 
-function verificarChute(){
+function verificarChute() {
     let chute = document.querySelector("input").value;
 
-    if(chute == numeroSecreto){
+    if (chute == numeroSecreto) {
         exibirTextoNaTela("h1", "Parabéns!");
         let palavraTentativa = tentativas > 1 ? "tentativas" : "tentativa";
         let mensagemTentativas = `Você acertou o número secreto com ${tentativas} ${palavraTentativa}!`;
         exibirTextoNaTela("p", mensagemTentativas);
         reiniciarJogo();
     } else {
-        if(chute > numeroSecreto){
+        if (chute > numeroSecreto) {
             exibirTextoNaTela("p", `O número secreto é menor que ${chute}`);
 
         } else {
@@ -29,11 +33,11 @@ function verificarChute(){
     }
 }
 
-function reiniciarJogo(){
+function reiniciarJogo() {
     let botaoReiniciar = document.getElementById("reiniciar");
     botaoReiniciar.disabled = false;
     limparCampo();
-    botaoReiniciar.onclick = function(){
+    botaoReiniciar.onclick = function() {
         numeroSecreto = gerarNumeroAleatorio();
         tentativas = 1;
         exibirTextoNaTela("h1", "Adivinhe o número");
@@ -42,13 +46,23 @@ function reiniciarJogo(){
     }
 }
 
-function limparCampo(){
+function limparCampo() {
     chute = document.querySelector("input");
     chute.value = "";
 }
 
-function gerarNumeroAleatorio(){
-    return parseInt(Math.random() * 10 + 1);
+function gerarNumeroAleatorio() {
+    let numeroEscolhido = parseInt(Math.random() * limiteDeTentativas + 1);
+    let quantidadeNumerosSorteados = listaNumerosSorteados.length;
+    if (quantidadeNumerosSorteados == limiteDeTentativas) {
+        listaNumerosSorteados = [];
+    }
+    if (listaNumerosSorteados.includes(numeroEscolhido)) {
+        return gerarNumeroAleatorio();
+    } else {
+        listaNumerosSorteados.push(numeroEscolhido);
+        return numeroEscolhido;
+    }
 }
 
 exibirTextoNaTela("h1", "Adivinhe o número");

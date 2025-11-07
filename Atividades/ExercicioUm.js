@@ -46,3 +46,48 @@ console.log(resultado);
 //     return num * num;
 // }
 // console.log(numeroMultiplicado(7));
+
+//IMC
+// function calcularIMC(peso, altura) {
+//     return peso / (altura * altura);
+// }
+// console.log(calcularIMC(61, 1.65));
+
+// //Fatorial
+// function fatorial(numero) {
+//     let resultado = 1;
+//     for (let i = 2; i <= numero; i++) {
+//         resultado *= i;
+//     }
+//     return resultado;
+// }
+// console.log(fatorial(5)); // Exemplo de uso da função fatorial
+
+// //cambio
+// function converterDolarParaReal(valorEmDolar) {
+//     const cotacaoDolar = 4.80;
+//     return valorEmDolar * cotacaoDolar;
+// }
+// console.log(converterDolarParaReal(100)); // Exemplo: 100 dólares = R$ 480,00
+
+// //area e perimetro do retangulo
+// function calcularAreaRetangulo(base, altura) {
+//     return base * altura;
+// }
+// console.log(calcularAreaRetangulo(5, 10)); // Exemplo: área = 50
+
+// //area e perimetro do circulo
+// function calcularAreaCirculo(raio) {
+//     return Math.PI * raio * raio;
+// }
+// console.log(calcularAreaCirculo(5)); // Exemplo: área = 78.54
+
+// //tabuada
+// function tabuada(numero) {
+//     let resultado = "";
+//     for (let i = 0; i <= 10; i++) {
+//         resultado += `${numero} x ${i} = ${numero * i}\n`;
+//     }
+//     console.log(resultado);
+// }
+// tabuada(7); // Exemplo: tabuada do 7
