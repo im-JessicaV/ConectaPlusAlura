@@ -91,3 +91,95 @@ console.log(resultado);
 //     console.log(resultado);
 // }
 // tabuada(7); // Exemplo: tabuada do 7
+
+//jogo da forca via console
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+let palavras = ["javascript", "programacao", "desenvolvedor", "computador", "tecnologia"];
+let palavraSecreta = "";
+let letrasTentadas = [];
+let letrasCorretas = [];
+let tentativasRestantes = 6;
+let jogoAtivo = true;
+
+function escolherPalavraSecreta() {
+    let indiceAleatorio = Math.floor(Math.random() * palavras.length);
+    palavraSecreta = palavras[indiceAleatorio];
+}
+
+function exibirEstadoAtual() {
+    let palavraExibida = palavraSecreta.split('').map(letra => (letrasCorretas.includes(letra) ? letra : '_')).join(' ');
+    console.log('\n=================');
+    console.log('Palavra:', palavraExibida);
+    console.log('Tentativas restantes:', tentativasRestantes);
+    console.log('Letras tentadas:', letrasTentadas.join(', '));
+    console.log('=================\n');
+    
+    if (jogoAtivo) {
+        pedirLetra();
+    } else {
+        console.log('\nDeseja jogar novamente? (s/n)');
+        rl.question('', resposta => {
+            if (resposta.toLowerCase() === 's') {
+                reiniciarJogo();
+            } else {
+                rl.close();
+            }
+        });
+    }
+}
+
+function verificarLetra(letra) {
+    if (!jogoAtivo || letrasTentadas.includes(letra)) {
+        console.log('Letra já foi tentada ou jogo finalizado!');
+        pedirLetra();
+        return;
+    }
+
+    letrasTentadas.push(letra); 
+    if (palavraSecreta.includes(letra)) {
+        letrasCorretas.push(letra); 
+        console.log('Letra correta!');
+        if (palavraSecreta.split('').every(l => letrasCorretas.includes(l))) {
+            jogoAtivo = false;
+            console.log("\nParabéns! Você ganhou!");
+            console.log("A palavra era:", palavraSecreta);
+        }
+    } else {
+        tentativasRestantes--;
+        console.log('Letra incorreta!');
+        if (tentativasRestantes === 0) {
+            jogoAtivo = false;
+            console.log("\nFim de jogo! Você perdeu!");
+            console.log("A palavra era:", palavraSecreta);
+        }
+    }
+    exibirEstadoAtual();
+}
+
+function pedirLetra() {
+    if (jogoAtivo) {
+        rl.question('Digite uma letra: ', (letra) => {
+            verificarLetra(letra.toLowerCase());
+        });
+    }
+}
+
+function reiniciarJogo() {
+    palavraSecreta = "";
+    letrasTentadas = [];
+    letrasCorretas = [];
+    tentativasRestantes = 6;
+    jogoAtivo = true;
+    escolherPalavraSecreta();
+    console.log('\nNovo jogo iniciado!');
+    exibirEstadoAtual();
+}
+
+// Iniciar o jogo
+reiniciarJogo();
